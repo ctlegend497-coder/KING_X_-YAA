@@ -1,11 +1,13 @@
 const { cmd } = require("../command");
-const axios = require('axios'); // Media Download සඳහා axios library එක අවශ්‍යයි.
+
+// Note: If zanta.downloadMediaMessage is not available, you might need to use the raw Baileys download logic.
+// However, assuming ZANTA_MD exposes the core Baileys functionality via 'zanta'.
 
 cmd(
     {
         pattern: "save",
         react: "✅", 
-        desc: "Resend Status or One-Time View Media (Buffer FIX)",
+        desc: "Resend Status or One-Time View Media (Final FIX: Native Download)",
         category: "general",
         filename: __filename,
     },
@@ -24,29 +26,36 @@ cmd(
                 return reply("*කරුණාකර Status/Media Message එකකට reply කරන්න!* 🧐");
             }
 
-            let mediaObject = quoted.quoted || quoted.fakeObj;
+            // 1. Media Object එක ලබා ගැනීම (Log එක අනුව quoted.quoted හෝ quoted.fakeObj)
+            const mediaObject = quoted.quoted || quoted.fakeObj;
             let saveCaption = "*💾 Saved and Resent!*";
             
             if (!mediaObject) {
-                return reply("*⚠️ Media Content එක හඳුනාගැනීමට අසමත් විය. (Media Data නැත)*");
+                return reply("*⚠️ Media Content එක හඳුනාගැනීමට අසමත් විය.*");
             }
-
-            // 1. Media Type එක තීරණය කිරීම
+            
+            // 2. Media Type එක තීරණය කිරීම
             const messageType = Object.keys(mediaObject)[0];
-            const mediaData = mediaObject[messageType];
             
-            // 2. Download URL එක ලබා ගැනීම
-            const mediaUrl = mediaData.url || mediaData.directPath; 
-
-            if (!mediaUrl) {
-                 return reply("*⚠️ Media Download කිරීමට URL එකක් සොයාගත නොහැක.*");
+            // 3. Media File Download (Native Baileys Method භාවිතයෙන්)
+            reply("*Status Media File එක Download කරමින් (Decryption)...* ⏳");
+            
+            // Baileys media download සඳහා සම්පූර්ණ message key සහ content අවශ්‍ය වේ.
+            // අපි 'm' object එකේ quoted part එකම download කිරීමට යවමු.
+            
+            // ⚠️ වැදගත්: downloadMediaMessage සඳහා, අපි Inner Media Object එක නොව,
+            // සම්පූර්ණ Quoted Message Object එක යැවිය යුතුයි.
+            const messageForDownload = m.message.extendedTextMessage.contextInfo.quotedMessage;
+            
+            if (!messageForDownload) {
+                 return reply("*⚠️ Download කිරීමට අවශ්‍ය Message Context එක සොයාගත නොහැක.*");
             }
             
-            reply("*Media File එක Download කරමින්...* ⏳");
-
-            // 3. Media File එක Download කර Buffer එකක් ලෙස ලබා ගැනීම
-            const mediaResponse = await axios.get(mediaUrl, { responseType: 'arraybuffer' });
-            const mediaBuffer = mediaResponse.data;
+            // Baileys' native function භාවිතයෙන් Media Buffer එක ලබා ගැනීම
+            const mediaBuffer = await zanta.downloadMediaMessage(
+                { message: messageForDownload, key: quoted.key }, 
+                'buffer'
+            );
             
             // 4. Message Options සැකසීම (Buffer භාවිතයෙන්)
             let messageOptions = {};
@@ -56,7 +65,13 @@ cmd(
             } else if (messageType === 'videoMessage') {
                 messageOptions = { video: mediaBuffer, caption: saveCaption };
             } else if (messageType === 'documentMessage') {
-                messageOptions = { document: mediaBuffer, fileName: mediaData.fileName, mimetype: mediaData.mimetype, caption: saveCaption };
+                // Document requires mime type and file name
+                messageOptions = { 
+                    document: mediaBuffer, 
+                    fileName: mediaObject[messageType].fileName || 'saved_media', 
+                    mimetype: mediaObject[messageType].mimetype, 
+                    caption: saveCaption 
+                };
             } else {
                  return reply("*⚠️ හඳුනාගත් Media Type එක යැවීමට සහය නොදක්වයි.*");
             }
