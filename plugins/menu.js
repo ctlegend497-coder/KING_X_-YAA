@@ -39,11 +39,23 @@ cmd(
       }
 
       await reply(menuText.trim());
+
+      await zanta.sendMessage(
+        from,
+        {
+          image: {
+            url: "https://github.com/Akashkavindu/ZANTA_MD/blob/main/images/ChatGPT%20Image%20Nov%2023,%202025,%2005_09_00%20AM.png?raw=true",
+          },
+          caption,
+        },
+        { quoted: mek }
+      );
     } catch (err) {
       console.error(err);
       reply("❌ Error generating menu.");
     }
   }
 );
+
 
 
