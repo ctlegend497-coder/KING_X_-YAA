@@ -88,7 +88,7 @@ async function connectToWA() {
             const up = `> ZANTA-MD connected ✅\n\nPREFIX: ${prefix}`;
             // 🚨 FIX: Image එක ඉවත් කර Text Message එකක් පමණක් යවයි
             await zanta.sendMessage(ownerNumber[0] + "@s.whatsapp.net", { text: up });
-            });
+          
 
             fs.readdirSync("./plugins/").forEach((plugin) => {
                 if (path.extname(plugin).toLowerCase() === ".js") {
