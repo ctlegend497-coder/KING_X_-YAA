@@ -18,7 +18,7 @@ const FINAL_ALIVE_MSG = ALIVE_MSG_TEMPLATE
 
 
 module.exports = {
-SESSION_ID: process.env.SESSION_ID || "JZ91BZKL#SwbHaz1nipWlWu5CicFRT-WtdKPgAZrFogEbAOVBpuE", //Your session id
+SESSION_ID: process.env.SESSION_ID || "4Il3ALKJ#k0mx22GZJfZ5YiMee6zlyJemNK31BMXyszZxjwdg6l0", //Your session id
 ALIVE_IMG: process.env.ALIVE_IMG || "https://raw.githubusercontent.com/Akashkavindu/ZANTA_MD/refs/heads/main/images/ChatGPT%20Image%20Nov%2021%2C%202025%2C%2001_21_32%20AM.png",
 ALIVE_MSG: process.env.ALIVE_MSG || FINAL_ALIVE_MSG, 
 BOT_OWNER: OWNER_NUMBER, 
