@@ -19,7 +19,7 @@ const FINAL_ALIVE_MSG = ALIVE_MSG_TEMPLATE
 
 module.exports = {
 SESSION_ID: process.env.SESSION_ID || "5NFmGRKZ#-Q5gN23jhxHr8Gk1Xwt8b8MmubFQlnU8v3t_nRN2G_g", //Your session id
-ALIVE_IMG: process.env.ALIVE_IMG || "https://github.com/Akashkavindu/ZANTA_MD/blob/main/images/alive.jpg?raw=true",
+ALIVE_IMG: process.env.ALIVE_IMG || "https://github.com/Akashkavindu/ZANTA_MD/blob/main/images/alive-new.jpg?raw=true",
 ALIVE_MSG: process.env.ALIVE_MSG || FINAL_ALIVE_MSG, 
 BOT_OWNER: OWNER_NUMBER, 
 BOT_NAME: DEFAULT_BOT_NAME
