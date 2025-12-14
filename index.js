@@ -133,7 +133,7 @@ async function connectToWA() {
                 caption: up,
             });
 
-            // ✅ PLUGIN LOADER
+            // ✅ PLUGIN LOADER.
             fs.readdirSync("./plugins/").forEach((plugin) => {
                 if (path.extname(plugin).toLowerCase() === ".js") {
                     try {
