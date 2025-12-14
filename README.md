@@ -36,7 +36,7 @@
 Run this sessionrepo in replit and get session id
 
 <div align="center">
-  <a href="https://github.com/Akashkavindu">
+  <a href="https://github.com/Akashkavindu/WEB-PAIR">
     <img src="https://img.shields.io/badge/Visit_Developer's_GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="Developer GitHub">
   </a>
 </div>
