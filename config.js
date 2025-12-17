@@ -7,14 +7,17 @@ function convertToBool(text, fault = 'true') {
 
 module.exports = {
     // 🔑 Essential Session & Owner Settings
-    SESSION_ID: process.env.SESSION_ID || "Enter your session ID",
+    SESSION_ID: process.env.SESSION_ID || "RAtmGRoI#aLIFr0anyVMDjpbBHuca_u-LysVYWrYiHBEsCXBx7-4",
     OWNER_NUMBER: process.env.OWNER_NUMBER || "94766247995",
+
+    // 🤖 Default Fallback Settings
     DEFAULT_BOT_NAME: process.env.DEFAULT_BOT_NAME || "ZANTA-MD",
     DEFAULT_OWNER_NAME: process.env.DEFAULT_OWNER_NAME || "Akash nimsara",
     DEFAULT_PREFIX: process.env.DEFAULT_PREFIX || ".",
 
     // 🖼️ Media Settings (Alive image & Menu)
     ALIVE_IMG: process.env.ALIVE_IMG || "https://github.com/Akashkavindu/ZANTA_MD/blob/main/images/alive-new.jpg?raw=true",
+    MENU_IMG: process.env.MENU_IMG || "https://github.com/Akashkavindu/ZANTA_MD/blob/main/images/menu-new.jpg?raw=true",
 
     // ⚙️ Dashboard / Database Defaults
     // මෙම අගයන් පළමු වතාවට Database එක සෑදීමේදී භාවිත වේ (Database & Dashboard Sync)
