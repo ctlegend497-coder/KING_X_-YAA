@@ -13,7 +13,7 @@ const tempDir = path.join(__dirname, '../temp');
 if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
 
 // 🗝️ Remove.bg API Key (Get from remove.bg)
-const REMOVE_BG_API_KEY = "YOUR_REMOVEBG_API_KEY"; 
+const REMOVE_BG_API_KEY = "vGc2DJRV25qEAWbU26YaQV2R"; 
 
 /**
  * Media බාගත කිරීමේ ක්‍රියාවලිය
@@ -188,21 +188,33 @@ cmd({
     try {
         let media = getMedia(quoted);
         if (!media || media.type !== 'image') return reply("*ඡායාරූපයකට Reply කරන්න!* ❌");
-        if (REMOVE_BG_API_KEY === "YOUR_REMOVEBG_API_KEY") return reply("*කරුණාකර API Key එක ඇතුළත් කරන්න!*");
 
         reply("*පසුබිම ඉවත් කරමින් පවතී...* ⏳");
+
         const buffer = await downloadMedia(media.data, 'image');
+        if (!buffer) return reply("*ඡායාරූපය බාගත කිරීම අසාර්ථකයි!*");
+
         const form = new FormData();
         form.append('size', 'auto');
-        form.append('image_file', buffer, 'file.jpg');
+        form.append('image_file', buffer, { filename: 'image.jpg' });
 
         const res = await axios.post('https://api.remove.bg/v1.0/removebg', form, {
-            headers: { ...form.getHeaders(), 'X-Api-Key': REMOVE_BG_API_KEY },
+            headers: { 
+                ...form.getHeaders(), 
+                'X-Api-Key': REMOVE_BG_API_KEY // මෙහිදී ඉහළින් ඇති Key එක ස්වයංක්‍රීයව ගනු ලබයි
+            },
             responseType: 'arraybuffer'
         });
 
-        await zanta.sendMessage(from, { image: Buffer.from(res.data), caption: "> *Background Removed*" }, { quoted: mek });
-    } catch (e) { reply("*Error! API Limit එක අවසන් වී තිබිය හැක.*"); }
+        await zanta.sendMessage(from, { 
+            image: Buffer.from(res.data), 
+            caption: "> *Background Removed by ZANTA-MD*" 
+        }, { quoted: mek });
+
+    } catch (e) { 
+        console.error(e);
+        reply("*Error! API Key එක වැරදි හෝ මාසික සීමාව (Credits 50) අවසන් වී තිබිය හැක.*"); 
+    }
 });
 
 module.exports = {};
