@@ -11,7 +11,7 @@ cmd({
     pattern: "settings",
     alias: ["set", "dashboard", "status"],
     desc: "Display and edit bot settings via reply.",
-    category: "setting",
+    category: "main",
     react: "⚙️",
     filename: __filename,
 }, async (zanta, mek, m, { from, reply, isOwner, prefix }) => {
