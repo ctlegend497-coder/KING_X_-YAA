@@ -43,9 +43,6 @@ const port = process.env.PORT || 8000;
 const credsPath = path.join(__dirname, "/auth_info_baileys/creds.json");
 const messagesStore = {};
 
-// --- 🗑️ Bad Words List ---
-const customBadWords = ["fuck", "sex", "porn", "හුකන", "පොන්න", "පුක", "බැල්ලි", "කුණුහරුප"];
-
 process.on('uncaughtException', (err) => console.error('⚠️ Exception:', err));
 process.on('unhandledRejection', (reason) => console.error('⚠️ Rejection:', reason));
 
