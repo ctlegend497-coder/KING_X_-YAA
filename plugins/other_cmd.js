@@ -1,4 +1,6 @@
 const { cmd } = require("../command");
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 cmd({
     pattern: "jid",
@@ -63,5 +65,70 @@ cmd({
     } catch (err) {
         console.error(err);
         reply("❌ වේගය පරීක්ෂා කිරීමේදී දෝෂයක් විය.");
+    }
+});
+
+cmd({
+    pattern: "hiru",
+    alias: ["news", "hirunews"],
+    react: "📰",
+    desc: "Get the latest news from Hiru News.",
+    category: "search",
+    filename: __filename,
+}, async (zanta, mek, m, { from, reply }) => {
+    try {
+        const loading = await zanta.sendMessage(from, { text: "🗞️ *හිරු පුවත් ලබා ගනිමින් පවතී...*" }, { quoted: mek });
+
+        // හිරු නිවුස් RSS feed එක හෝ සයිට් එකෙන් දත්ත ගනිමු
+        const response = await axios.get('https://www.hirunews.lk/rss/sinhala.xml');
+        const xmlData = response.data;
+
+        // Cheerio පාවිච්චි කරලා XML එක parse කරමු
+        const $ = cheerio.load(xmlData, { xmlMode: true });
+        let newsList = [];
+
+        // පුවත් 5ක් පමණක් තෝරා ගනිමු
+        $('item').each((i, el) => {
+            if (i < 5) {
+                const title = $(el).find('title').text();
+                const link = $(el).find('link').text();
+                const desc = $(el).find('description').text().split('<')[0]; // HTML tags අයින් කරන්න
+                const date = $(el).find('pubDate').text();
+
+                newsList.push({ title, link, desc, date });
+            }
+        });
+
+        if (newsList.length === 0) {
+            return await zanta.sendMessage(from, { text: "☹️ *පුවත් කිසිවක් හමු නොවීය.*", edit: loading.key });
+        }
+
+        let newsReport = `╭━─━─━─━─━─━─━─━╮\n┃ 📰 *HIRU NEWS UPDATES* ┃\n╰━─━─━─━─━─━─━─━╯\n\n`;
+
+        newsList.forEach((v, i) => {
+            newsReport += `📍 *${i + 1}. ${v.title}*\n\n📝 ${v.desc}\n📅 ${v.date}\n🔗 ${v.link}\n\n`;
+        });
+
+        newsReport += `> *© ZANTA-MD NEWS BOT*`;
+
+        // Loading මැසේජ් එක Edit කරලා News Report එක යවමු
+        await zanta.sendMessage(from, { 
+            text: newsReport, 
+            edit: loading.key,
+            contextInfo: {
+                externalAdReply: {
+                    title: "Hiru News - Latest",
+                    body: "Breaking News from Sri Lanka",
+                    thumbnailUrl: "https://www.hirunews.lk/images/logo.png",
+                    sourceUrl: "https://www.hirunews.lk",
+                    mediaType: 1,
+                    renderLargerThumbnail: true
+                }
+            }
+        });
+
+    } catch (err) {
+        console.error(err);
+        reply("❌ *හිරු පුවත් සේවාව සමඟ සම්බන්ධ විය නොහැක. Codespace එකේ axios install කර ඇත්දැයි බලන්න.*");
     }
 });
