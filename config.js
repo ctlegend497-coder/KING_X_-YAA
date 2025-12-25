@@ -19,7 +19,7 @@ module.exports = {
     ALIVE_IMG: process.env.ALIVE_IMG || "https://github.com/Akashkavindu/ZANTA_MD/blob/main/images/alive-new.jpg?raw=true",
     MENU_IMG: process.env.MENU_IMG || "https://github.com/Akashkavindu/ZANTA_MD/blob/main/images/menu-new.jpg?raw=true",
 
-    // ⚙️ Dashboard / Database Defaults
+    // ⚙️ Dashboard / Database Defaults.
     // මෙම අගයන් පළමු වතාවට Database එක සෑදීමේදී භාවිත වේ (Database & Dashboard Sync)
     AUTO_READ: process.env.AUTO_READ || "false",
     AUTO_TYPING: process.env.AUTO_TYPING || "false",
