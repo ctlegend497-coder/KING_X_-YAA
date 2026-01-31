@@ -1,18 +1,18 @@
 <div align="center">
-  <img src="https://github.com/Akashkavindu/ZANTA_MD/blob/main/images/alive-new.jpg?raw=true" alt="ZANTA-MD Logo" width="200" height="200"/>
-  <h1>👑 ZANTA-MD</h1>
+  <img src="https://github.com/chamod/KING_X_CHUTIYA/blob/main/images/alive-new.jpg?raw=true" alt="KING_X_CHUTIYAA Logo" width="200" height="200"/>
+  <h1>👑 KING_X_CHUTIYAA</h1>
   <h3>The Advanced WhatsApp Multi-Device Bot</h3>
 </div>
 
 <p align="center">
-  <a href="https://github.com/Akashkavindu/ZANTA_MD/fork">
-    <img alt="Fork" src="https://img.shields.io/github/forks/Akashkavindu/ZANTA_MD?style=for-the-badge&logo=github&label=Fork&color=white">
+  <a href="https://github.com/CHAMOD/KING_X_CHUTIYAA/fork">
+    <img alt="Fork" src="https://img.shields.io/github/forks/CHAMOD/KING_X_CHUTIYAA?style=for-the-badge&logo=github&label=Fork&color=white">
   </a>
-  <a href="https://github.com/Akashkavindu/ZANTA_MD/stargazers">
-    <img alt="Stars" src="https://img.shields.io/github/stars/Akashkavindu/ZANTA_MD?style=for-the-badge&logo=github&label=Stars&color=yellow">
+  <a href="https://github.com/CHAMOD/KING_X_CHUTIYAA/stargazers">
+    <img alt="Stars" src="https://img.shields.io/github/stars/CHAMOD/KING_X_CHUTIYAA?style=for-the-badge&logo=github&label=Stars&color=yellow">
   </a>
-  <a href="https://github.com/Akashkavindu/ZANTA_MD/issues">
-    <img alt="Issues" src="https://img.shields.io/github/issues/Akashkavindu/ZANTA_MD?style=for-the-badge&logo=github&label=Issues&color=red">
+  <a href="https://github.com/CHAMOD/KING_X_CHUTIYAA/issues">
+    <img alt="Issues" src="https://img.shields.io/github/issues/CHAMOD/KING_X_CHUTIYAA?style=for-the-badge&logo=github&label=Issues&color=red">
   </a>
 </p>
 
@@ -23,9 +23,9 @@
 
 | Key | Value |
 | :--- | :--- |
-| **Owner/Developer** | [Akash Kavindu](https://github.com/Akashkavindu) |
-| **WhatsApp Support** | +94 74 340 4814 (Owner Number) |
-| **GitHub Repository** | [Akashkavindu/ZANTA_MD](https://github.com/Akashkavindu/ZANTA_MD) |
+| **Owner/Developer** | [CHAMOD MIYURU SATHSARA]
+| **WhatsApp Support** | +94 74 134 6316 (Owner Number) |
+| **GitHub Repository** | [CHAMOD MIYURU SATHSARA/KING_X_CHUTIYAA]() |
 | **Current Status** | 🟢 Active and Multi-Device Compatible |
 
 ---
