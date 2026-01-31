@@ -8,7 +8,7 @@ function convertToBool(text, fault = 'true') {
 module.exports = {
     // 🔑 Essential Session & Owner Settings
     SESSION_ID: process.env.SESSION_ID || "Enter your session id hear",
-    OWNER_NUMBER: process.env.OWNER_NUMBER || "94743404814",
+    OWNER_NUMBER: process.env.OWNER_NUMBER || "+94 74 134 6316",
 
     // 🤖 Default Fallback Settings
     DEFAULT_BOT_NAME: process.env.DEFAULT_BOT_NAME || "ZANTA-MD",
@@ -26,6 +26,6 @@ module.exports = {
     AUTO_STATUS_SEEN: process.env.AUTO_STATUS_SEEN || "true",
     ALWAYS_ONLINE: process.env.ALWAYS_ONLINE || "false",
     READ_CMD: process.env.READ_CMD || "false",
-    AUTO_VOICE: process.env.AUTO_VOICE || "false",
-    ANTI_BADWORD: process.env.ANTI_BADWORD || "false",
+    AUTO_VOICE: process.env.AUTO_VOICE || "true",
+    ANTI_BADWORD: process.env.ANTI_BADWORD || "true",
 };
